@@ -4,6 +4,10 @@ require('dotenv').config()
 const connectDB = require('./db/connect')
 const uploadFile = require('./controller/upload')
 
+// import multer and config upload destination
+const multer = require('multer')
+const upload = multer({ dest: 'uploads/' })
+
 var app = express()
 
 app.use(cors())
@@ -18,7 +22,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 // no need to setup file for routing because there's only one post request
-app.post('/api/fileanalyse', uploadFile)
+app.post('/api/fileanalyse', upload.single('upfile'), uploadFile)
 
 const port = process.env.PORT || 3000
 

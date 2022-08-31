@@ -1,7 +1,8 @@
 const uploadFile = async (req, res) => {
   try {
-    // to do something with the upload file here
-    res.status(200).json(req.body)
+    const { originalname: name, mimetype: type, size } = req.file
+
+    res.status(200).json({ name, type, size })
   } catch (error) {
     console.log(error)
   }
