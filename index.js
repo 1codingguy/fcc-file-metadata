@@ -2,6 +2,7 @@ var express = require('express')
 var cors = require('cors')
 require('dotenv').config()
 const connectDB = require('./db/connect')
+const uploadFile = require('./controller/upload')
 
 var app = express()
 
@@ -11,6 +12,13 @@ app.use('/public', express.static(process.cwd() + '/public'))
 app.get('/', function (req, res) {
   res.sendFile(process.cwd() + '/views/index.html')
 })
+
+// middleware
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
+// no need to setup file for routing because there's only one post request
+app.post('/api/fileanalyse', uploadFile)
 
 const port = process.env.PORT || 3000
 
