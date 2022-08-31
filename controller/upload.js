@@ -1,3 +1,4 @@
+// not necessary to be async function because there's no interaction with DB and therefore no async operations
 const uploadFile = (req, res) => {
   try {
     const { originalname: name, mimetype: type, size } = req.file

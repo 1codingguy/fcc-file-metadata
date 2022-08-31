@@ -1,7 +1,6 @@
 var express = require('express')
 var cors = require('cors')
 require('dotenv').config()
-const connectDB = require('./db/connect')
 const uploadFile = require('./controller/upload')
 
 // import multer and config upload destination
