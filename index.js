@@ -24,17 +24,9 @@ app.use(express.urlencoded({ extended: true }))
 // no need to setup file for routing because there's only one post request
 app.post('/api/fileanalyse', upload.single('upfile'), uploadFile)
 
+// not necessary to setup connection to DB because nothing is stored in this exercise
 const port = process.env.PORT || 3000
 
-const start = () => {
-  try {
-    connectDB(process.env.MONGO_URI)
-    app.listen(port, function () {
-      console.log('Your app is listening on port ' + port)
-    })
-  } catch (error) {
-    console.log(error)
-  }
-}
-
-start()
+app.listen(port, function () {
+  console.log('Your app is listening on port ' + port)
+})
